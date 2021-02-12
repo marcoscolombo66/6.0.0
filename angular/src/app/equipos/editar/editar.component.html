@@ -1,0 +1,69 @@
+<form class="form-horizontal"
+      autocomplete="off"
+      #editEquipoForm="ngForm"
+      (ngSubmit)="save()">
+    <abp-modal-header [title]="'EditEquipo' | localize"
+                      (onCloseClick)="bsModalRef.hide()"></abp-modal-header>
+    <div class="modal-body">
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="nombre_equipo">
+                {{ "nombre_equipo" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text"
+                       class="form-control"
+                       name="nombre_equipo"
+                       id="nombre_equipo"
+                       minlength="2"
+                       maxlength="64"
+                       required
+                       [(ngModel)]="equipo.nombre_equipo"
+                       #nombre_equipoModel="ngModel"
+                       #nombre_equipoEl />
+                <abp-validation-summary [control]="nombre_equipoModel"
+                                        [controlEl]="nombre_equipoEl"></abp-validation-summary>
+            </div>
+        </div>
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="categoria">
+                {{ "categoria" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text"
+                       class="form-control"
+                       name="categoria"
+                       id="categoria"
+                       maxlength="128"
+                       required
+                       [(ngModel)]="equipo.categoria"
+                       #categoriaModel="ngModel"
+                       #categoriaEl />
+                <abp-validation-summary [control]="categoriaModel"
+                                        [controlEl]="categoriaEl"></abp-validation-summary>
+            </div>
+        </div>
+
+        <div class="form-group row required">
+            <label class="col-md-3 col-form-label" for="campeonatos">
+                {{ "campeonatos" | localize }}
+            </label>
+            <div class="col-md-9">
+                <input type="text"
+                       class="form-control"
+                       name="campeonatos"
+                       id="campeonatos"
+                       maxlength="128"
+                       required
+                       [(ngModel)]="equipo.campeonatos"
+                       #campeonatosModel="ngModel"
+                       #campeonatosEl />
+                <abp-validation-summary [control]="campeonatosModel"
+                                        [controlEl]="campeonatosEl"></abp-validation-summary>
+            </div>
+        </div>
+
+    </div>
+    <abp-modal-footer [cancelDisabled]="saving"
+                      [saveDisabled]="!editEquipoForm.form.valid || saving"
+                      (onCancelClick)="bsModalRef.hide()"></abp-modal-footer>
+</form>
